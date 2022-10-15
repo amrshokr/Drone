@@ -5,10 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +21,12 @@ public class Drone {
 	private BigDecimal batteryCapacity;
 	private String state;
 	private Date createdDate;
-	private Medication medicationId;
+	private BigDecimal loadedWeight;
+	
 
 	@Id
 	@Column(name="DRONE_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public BigDecimal getDroneId() {
 		return droneId;
 	}
@@ -89,23 +90,37 @@ public class Drone {
 		this.createdDate = createdDate;
 	}
 	
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MEDICATION_ID")
-	public Medication getMedicationId() {
-		return medicationId;
+	
+//
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "MEDICATION_ID")
+//	public Medication getMedicationId() {
+//		return medicationId;
+//	}
+//
+//	public void setMedicationId(Medication medicationId) {
+//		this.medicationId = medicationId;
+//	}
+	
+	@Column(name="LOADED_WEIGHT")
+	public BigDecimal getLoadedWeight() {
+		return loadedWeight;
 	}
 
-	public void setMedicationId(Medication medicationId) {
-		this.medicationId = medicationId;
+	public void setLoadedWeight(BigDecimal loadedWeight) {
+		this.loadedWeight = loadedWeight;
 	}
 
 	@Override
 	public String toString() {
 		return "Drone [droneId=" + droneId + ", serialNumber=" + serialNumber + ", model=" + model + ", weightLimit="
 				+ weightLimit + ", batteryCapacity=" + batteryCapacity + ", state=" + state + ", createdDate="
-				+ createdDate + "]";
+				+ createdDate + ", loadedWeight=" + loadedWeight + "]";
 	}
+
+	
+
+	
 
 	
 	

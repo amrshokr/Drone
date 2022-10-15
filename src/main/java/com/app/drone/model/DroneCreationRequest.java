@@ -8,7 +8,7 @@ public class DroneCreationRequest {
 	private WeightType model;
 	private BigDecimal weightLimit;
 	private BigDecimal batteryCapacity;
-	private StateType state;
+	
 	public String getSerialNumber() {
 		return serialNumber;
 	}
@@ -33,12 +33,7 @@ public class DroneCreationRequest {
 	public void setBatteryCapacity(BigDecimal batteryCapacity) {
 		this.batteryCapacity = batteryCapacity;
 	}
-	public StateType getState() {
-		return state;
-	}
-	public void setState(StateType state) {
-		this.state = state;
-	}
+	
 	
 	
 	

@@ -15,6 +15,7 @@ import com.app.drone.manager.DroneManager;
 import com.app.drone.model.Drone;
 import com.app.drone.model.DroneCreationRequest;
 import com.app.drone.model.DroneCreationResponse;
+import com.app.drone.model.MedicationsCreationRequest;
 import com.app.drone.model.MedicationsCreationResponse;
 import com.app.drone.model.MidicationCreationReqList;
 import com.app.drone.repository.DroneRepository;
@@ -43,11 +44,11 @@ public class DroneService {
 	
 	public DroneCreationResponse createDrone(DroneCreationRequest request) {
 		DroneCreationResponse drone=new DroneCreationResponse();
-		
+		drone=droneManager.saveDrone(request);
 		return drone;
 	}
 	
-	public MedicationsCreationResponse store(MidicationCreationReqList request) throws IOException, SerialException, SQLException {
+	public MedicationsCreationResponse store(MedicationsCreationRequest request) throws IOException, SerialException, SQLException {
 		MedicationsCreationResponse response=droneManager.saveMedication(request);
 	    
 	    return response;
