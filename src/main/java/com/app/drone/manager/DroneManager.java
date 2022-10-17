@@ -209,7 +209,7 @@ public class DroneManager {
 
 	}
 
-	@Scheduled(fixedRate = 36000)
+	@Scheduled(fixedRate = 60000)
 	public void droneTask() {
 		List<Drone> droneList = droneRepository.findAll();
 		// To Get Medication List which is not loaded yet
@@ -218,18 +218,22 @@ public class DroneManager {
 			for (Drone drone : droneList) {
 				if (drone.getState().equalsIgnoreCase(StateType.LOADING.getName())) {
 					drone.setState(StateType.LOADED.getName());
+					drone.setBatteryCapacity(new BigDecimal(90));
 					log.info("Drone In LOADED State Serial " + drone.getSerialNumber() + " And Battry Capacity is: "
 							+ drone.getBatteryCapacity());
 				} else if (drone.getState().equalsIgnoreCase(StateType.LOADED.getName())) {
 					drone.setState(StateType.DELIVERING.getName());
+					drone.setBatteryCapacity(new BigDecimal(80));
 					log.info("Drone In DELIVERING State Serial " + drone.getSerialNumber() + " And Battry Capacity is: "
 							+ drone.getBatteryCapacity());
 				} else if (drone.getState().equalsIgnoreCase(StateType.DELIVERING.getName())) {
 					drone.setState(StateType.DELIVERED.getName());
+					drone.setBatteryCapacity(new BigDecimal(70));
 					log.info("Drone In DELIVERED State Serial " + drone.getSerialNumber() + " And Battry Capacity is: "
 							+ drone.getBatteryCapacity());
 				} else if (drone.getState().equalsIgnoreCase(StateType.DELIVERED.getName())) {
 					drone.setState(StateType.RETURNING.getName());
+					drone.setBatteryCapacity(new BigDecimal(40));
 					log.info("Drone In RETURNING State Serial " + drone.getSerialNumber() + " And Battry Capacity is: "
 							+ drone.getBatteryCapacity());
 				} else if (drone.getState().equalsIgnoreCase(StateType.RETURNING.getName())) {
